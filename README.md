@@ -1,6 +1,6 @@
 ## 📄 ToDo API - Lista de tarefas. 
 
-ToDo é uma API de Tarefas, onde você consegue criar criar uma lista de tarefas em NodeJs, onde é possível executar as seguintes ações:
+ToDo é uma API de Tarefas, onde você consegue criar uma lista de tarefas em NodeJs, onde é possível executar as seguintes ações:
 
   - É possível criar um usuario
   - É possível buscar as Todos do usuario
