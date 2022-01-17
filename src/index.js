@@ -22,7 +22,19 @@ function checksExistsUserAccount(request, response, next) {
   return next();
 }
 
+function checksExistsTodo(request, response, next) {
+  const { id } = request.params;
+  const { user } = request;
 
+  const todo = user.todos.find((todo) => todo.id === id);
+
+  if (!todo) {
+    return response.status(404).json({ error: "Todo not found" });
+  }
+
+  request.todo = todo;
+  return next()
+}
 
 app.post("/users", (request, response) => {
   const { name, username } = request.body;
@@ -70,6 +82,14 @@ app.post("/todos", checksExistsUserAccount, (request, response) => {
 });
 
 app.put("/todos/:id", checksExistsUserAccount, checksExistsTodo, (request, response) => {
+  const { todo } = request;
+  const { title, deadline } = request.body;
+
+
+  todo.title = title;
+  todo.deadline = new Date(deadline);
+
+  return response.json(todo);
 });
 
 app.patch("/todos/:id/done", checksExistsUserAccount, checksExistsTodo, (request, response) => {
