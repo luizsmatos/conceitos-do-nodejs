@@ -93,6 +93,11 @@ app.put("/todos/:id", checksExistsUserAccount, checksExistsTodo, (request, respo
 });
 
 app.patch("/todos/:id/done", checksExistsUserAccount, checksExistsTodo, (request, response) => {
+  const { todo } = request;
+
+  todo.done = true;
+
+  return response.json(todo);
 });
 
 app.delete("/todos/:id", checksExistsUserAccount, (request, response) => {
